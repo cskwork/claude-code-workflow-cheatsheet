@@ -1,0 +1,13 @@
+{
+  "_comment": "Everything Claude Code (ECC) harness - standard slash commands",
+  "_source": "https://github.com/affaan-m/everything-claude-code",
+  "companyAnnouncements": [
+    "[Workflows] Dev: /orchestrate feature|bugfix \"desc\" -> /e2e | Manual: /plan -> /tdd -> /code-review -> /verify",
+    "[Workflows] Reproduce: /e2e (as-is) -> /orchestrate bugfix -> /e2e (to-be) | Build: /build-fix -> /verify",
+    "[Workflows] Quality: /code-review -> /refactor-clean -> /verify | /quality-gate | /eval define|check|report",
+    "[Workflows] Multi: /multi-plan -> /multi-execute | /devfleet \"task\" | /model-route \"task\" --budget low|med|high",
+    "[Workflows] Docs: /update-docs, /update-codemaps | Ref: /docs \"lib\" | Loop: /loop-start sequential|continuous-pr",
+    "[Workflows] Learn: /learn -> /learn-eval -> /skill-create | Instincts: /instinct-status -> /evolve -> /promote",
+    "[Workflows] Session: /save-session, /resume-session | Meta: /harness-audit, /skill-health, /context-budget"
+  ]
+}

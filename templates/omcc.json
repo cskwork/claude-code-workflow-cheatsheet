@@ -1,0 +1,12 @@
+{
+  "_comment": "Oh My Claude Code (OMCC) harness - namespaced commands + magic keywords",
+  "_source": "https://github.com/yeachan-heo/oh-my-claudecode",
+  "companyAnnouncements": [
+    "[OMC] Auto: autopilot: desc | Persist: ralph: desc | Parallel: ulw tasks",
+    "[OMC] Team: /oh-my-claudecode:team 3:executor \"task\" | Plan: ralplan | QA: /oh-my-claudecode:ultraqa",
+    "[OMC] Clarify: deep-interview \"idea\" -> omc-plan --consensus -> autopilot: desc",
+    "[OMC] Investigate: /oh-my-claudecode:trace | Tri-Model: ccg \"query\" | Visual: /oh-my-claudecode:visual-verdict",
+    "[OMC] Cleanup: deslop | Skills: /oh-my-claudecode:skill list | Learn: /oh-my-claudecode:learner",
+    "[OMC] Session: /oh-my-claudecode:psm | Release: /oh-my-claudecode:release | Diag: /oh-my-claudecode:omc-doctor"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "_comment": "Superpowers (obra) harness - agentic skills framework",
+  "_source": "https://github.com/obra/superpowers",
+  "companyAnnouncements": [
+    "[Superpowers] Dev: /brainstorming -> /writing-plans -> /test-driven-development -> /verification-before-completion",
+    "[Superpowers] Execute: /executing-plans (review checkpoints) | /subagent-driven-development (parallel, same session)",
+    "[Superpowers] Quality: /requesting-code-review -> /receiving-code-review | Debug: /systematic-debugging",
+    "[Superpowers] Git: /using-git-worktrees -> /finishing-a-development-branch (merge|PR|cleanup)",
+    "[Superpowers] Parallel: /dispatching-parallel-agents (2+ independent tasks) | Meta: /writing-skills"
+  ]
+}
