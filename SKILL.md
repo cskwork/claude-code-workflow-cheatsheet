@@ -81,11 +81,11 @@ Pipeline:   deep-interview -> omc-plan --consensus -> autopilot
 Skill-based commands for structured development methodology.
 
 ```
-Dev:        /brainstorming -> /writing-plans -> /test-driven-development -> /verification-before-completion
-Execute:    /executing-plans (review checkpoints) | /subagent-driven-development (parallel)
-Quality:    /requesting-code-review -> /receiving-code-review | /systematic-debugging
-Git:        /using-git-worktrees -> /finishing-a-development-branch (merge|PR|cleanup)
-Parallel:   /dispatching-parallel-agents (2+ independent tasks)
+Design:     /brainstorming -> /writing-plans
+Execute:    /using-git-worktrees -> (/executing-plans or /subagent-driven-development)
+Per Task:   /test-driven-development -> /requesting-code-review -> /receiving-code-review
+Finish:     /verification-before-completion -> /finishing-a-development-branch
+Tools:      /systematic-debugging (bugs) | /dispatching-parallel-agents (parallel)
 Meta:       /writing-skills, /using-superpowers
 ```
 

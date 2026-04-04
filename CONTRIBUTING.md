@@ -23,11 +23,12 @@ Thanks for your interest in contributing!
 
 ## Guidelines
 
-- Keep each announcement line under ~120 characters
+- Use a **single array item** with `\n` for line breaks (multiple items = random 1 per session)
+- Keep each workflow line under ~120 characters
 - Use consistent syntax: `->` (sequential), `|` (alternatives), `,` (related)
 - Use a `[Prefix]` tag to namespace your harness
 - Test that the JSON is valid before submitting
-- Maximum 10 announcement lines per preset
+- Maximum 10 workflow lines per preset
 
 ## Reporting Issues
 

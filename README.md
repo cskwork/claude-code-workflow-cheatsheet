@@ -25,7 +25,7 @@ This skill scans your installed commands and generates a **persistent cheatsheet
 │  [Workflows] Multi: /multi-plan -> /multi-execute | /devfleet       │
 │  [Workflows] Learn: /learn -> /learn-eval -> /skill-create          │
 │  [OMC] Auto: autopilot: desc | Persist: ralph: desc                 │
-│  [Superpowers] Dev: /brainstorming -> /writing-plans -> /tdd        │
+│  [Superpowers] Design: /brainstorming -> /writing-plans             │
 │  ...                                                                │
 │                                                                     │
 │  Claude now proactively suggests the RIGHT command for your task.   │
@@ -65,11 +65,7 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 ```json
 {
   "companyAnnouncements": [
-    "[Superpowers] Dev: /brainstorming -> /writing-plans -> /test-driven-development -> /verification-before-completion",
-    "[Superpowers] Execute: /executing-plans (review checkpoints) | /subagent-driven-development (parallel, same session)",
-    "[Superpowers] Quality: /requesting-code-review -> /receiving-code-review | Debug: /systematic-debugging",
-    "[Superpowers] Git: /using-git-worktrees -> /finishing-a-development-branch (merge|PR|cleanup)",
-    "[Superpowers] Parallel: /dispatching-parallel-agents (2+ independent tasks) | Meta: /writing-skills"
+    "[Superpowers] Design: /brainstorming -> /writing-plans\n[Superpowers] Execute: /using-git-worktrees -> (/executing-plans or /subagent-driven-development)\n[Superpowers] Per Task: /test-driven-development -> /requesting-code-review -> /receiving-code-review\n[Superpowers] Finish: /verification-before-completion -> /finishing-a-development-branch\n[Superpowers] Tools: /systematic-debugging (bugs) | /dispatching-parallel-agents (parallel) | /writing-skills (meta)"
   ]
 }
 ```
@@ -82,13 +78,7 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 ```json
 {
   "companyAnnouncements": [
-    "[Workflows] Dev: /orchestrate feature|bugfix \"desc\" -> /e2e | Manual: /plan -> /tdd -> /code-review -> /verify",
-    "[Workflows] Reproduce: /e2e (as-is) -> /orchestrate bugfix -> /e2e (to-be) | Build: /build-fix -> /verify",
-    "[Workflows] Quality: /code-review -> /refactor-clean -> /verify | /quality-gate | /eval define|check|report",
-    "[Workflows] Multi: /multi-plan -> /multi-execute | /devfleet \"task\" | /model-route \"task\" --budget low|med|high",
-    "[Workflows] Docs: /update-docs, /update-codemaps | Ref: /docs \"lib\" | Loop: /loop-start sequential|continuous-pr",
-    "[Workflows] Learn: /learn -> /learn-eval -> /skill-create | Instincts: /instinct-status -> /evolve -> /promote",
-    "[Workflows] Session: /save-session, /resume-session | Meta: /harness-audit, /skill-health, /context-budget"
+    "[Workflows] Dev: /orchestrate feature|bugfix \"desc\" -> /e2e | Manual: /plan -> /tdd -> /code-review -> /verify\n[Workflows] Reproduce: /e2e (as-is) -> /orchestrate bugfix -> /e2e (to-be) | Build: /build-fix -> /verify\n[Workflows] Quality: /code-review -> /refactor-clean -> /verify | /quality-gate | /eval define|check|report\n[Workflows] Multi: /multi-plan -> /multi-execute | /devfleet \"task\" | /model-route \"task\" --budget low|med|high\n[Workflows] Docs: /update-docs, /update-codemaps | Ref: /docs \"lib\" | Loop: /loop-start sequential|continuous-pr\n[Workflows] Learn: /learn -> /learn-eval -> /skill-create | Instincts: /instinct-status -> /evolve -> /promote\n[Workflows] Session: /save-session, /resume-session | Meta: /harness-audit, /skill-health, /context-budget"
   ]
 }
 ```
@@ -101,12 +91,7 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 ```json
 {
   "companyAnnouncements": [
-    "[OMC] Auto: autopilot: desc | Persist: ralph: desc | Parallel: ulw tasks",
-    "[OMC] Team: /oh-my-claudecode:team 3:executor \"task\" | Plan: ralplan | QA: /oh-my-claudecode:ultraqa",
-    "[OMC] Clarify: deep-interview \"idea\" -> omc-plan --consensus -> autopilot: desc",
-    "[OMC] Investigate: /oh-my-claudecode:trace | Tri-Model: ccg \"query\" | Visual: /oh-my-claudecode:visual-verdict",
-    "[OMC] Cleanup: deslop | Skills: /oh-my-claudecode:skill list | Learn: /oh-my-claudecode:learner",
-    "[OMC] Session: /oh-my-claudecode:psm | Release: /oh-my-claudecode:release | Diag: /oh-my-claudecode:omc-doctor"
+    "[OMC] Auto: autopilot: desc | Persist: ralph: desc | Parallel: ulw tasks\n[OMC] Team: /oh-my-claudecode:team 3:executor \"task\" | Plan: ralplan | QA: /oh-my-claudecode:ultraqa\n[OMC] Clarify: deep-interview \"idea\" -> omc-plan --consensus -> autopilot: desc\n[OMC] Investigate: /oh-my-claudecode:trace | Tri-Model: ccg \"query\" | Visual: /oh-my-claudecode:visual-verdict\n[OMC] Cleanup: deslop | Skills: /oh-my-claudecode:skill list | Learn: /oh-my-claudecode:learner\n[OMC] Session: /oh-my-claudecode:psm | Release: /oh-my-claudecode:release | Diag: /oh-my-claudecode:omc-doctor"
   ]
 }
 ```
@@ -119,8 +104,7 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 ```json
 {
   "companyAnnouncements": [
-    "[Workflows] Dev: /plan -> /code-review | Bug: /build-fix",
-    "[Workflows] Docs: /docs \"lib\" | Session: /save-session, /resume-session"
+    "[Workflows] Dev: /plan -> /code-review | Bug: /build-fix\n[Workflows] Docs: /docs \"lib\" | Session: /save-session, /resume-session"
   ]
 }
 ```
@@ -133,14 +117,16 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 
 Claude Code's `companyAnnouncements` field in `settings.json` is designed for team-wide messages. This skill repurposes it as a **persistent workflow memory** — a cheatsheet that Claude reads at the start of every session.
 
+> **Important:** `companyAnnouncements` must be a `string[]` (array). If the array has **multiple items**, Claude Code picks **one at random per session** (rotating banner). To show all lines every session, use a **single array item** with `\n` for line breaks.
+
 ```
 settings.json                          Claude's System Prompt
-┌─────────────────────┐               ┌──────────────────────────┐
-│ "companyAnnouncements": [    ──────>│ Company announcements:   │
-│   "[Workflows] ..."  │              │ [Workflows] Dev: /orch.. │
-│   "[Workflows] ..."  │              │ [Workflows] Quality: ... │
-│ ]                    │              │                          │
-└─────────────────────┘               └──────────────────────────┘
+┌──────────────────────────┐          ┌──────────────────────────┐
+│ "companyAnnouncements": [ │   ────> │ Company announcements:   │
+│   "line1\nline2\nline3"   │         │ line1                    │
+│ ]                         │         │ line2                    │
+└──────────────────────────┘          │ line3                    │
+                                      └──────────────────────────┘
                                               │
                                               v
                                       Claude proactively suggests
@@ -177,13 +163,12 @@ settings.json                          Claude's System Prompt
 {
   "_comment": "My team's workflow",
   "companyAnnouncements": [
-    "[MyTeam] Deploy: /build -> /test -> /deploy-staging -> /deploy-prod",
-    "[MyTeam] Review: /lint -> /code-review -> /security-scan -> /approve"
+    "[MyTeam] Deploy: /build -> /test -> /deploy-staging -> /deploy-prod\n[MyTeam] Review: /lint -> /code-review -> /security-scan -> /approve"
   ]
 }
 ```
 
-2. Each line should be under ~120 characters
+2. Each workflow line should be under ~120 characters
 3. Use `[Prefix]` to group related workflows
 4. Submit a PR to share with the community!
 
@@ -213,10 +198,7 @@ Using both ECC and OMCC? Combine presets:
 ```json
 {
   "companyAnnouncements": [
-    "[ECC] Dev: /orchestrate feature \"desc\" -> /e2e -> /verify",
-    "[ECC] Quality: /code-review -> /refactor-clean -> /quality-gate",
-    "[OMC] Auto: autopilot: desc | Persist: ralph: desc",
-    "[OMC] Team: /oh-my-claudecode:team 3:executor \"task\""
+    "[ECC] Dev: /orchestrate feature \"desc\" -> /e2e -> /verify\n[ECC] Quality: /code-review -> /refactor-clean -> /quality-gate\n[OMC] Auto: autopilot: desc | Persist: ralph: desc\n[OMC] Team: /oh-my-claudecode:team 3:executor \"task\""
   ]
 }
 ```
@@ -228,9 +210,7 @@ Add project-level workflows alongside harness defaults:
 ```json
 {
   "companyAnnouncements": [
-    "[Project] PR: /plan -> /tdd -> /code-review -> gh pr create",
-    "[Project] Hotfix: /orchestrate bugfix \"desc\" -> /e2e -> git push",
-    "[Workflows] Quality: /code-review -> /refactor-clean -> /verify"
+    "[Project] PR: /plan -> /tdd -> /code-review -> gh pr create\n[Project] Hotfix: /orchestrate bugfix \"desc\" -> /e2e -> git push\n[Workflows] Quality: /code-review -> /refactor-clean -> /verify"
   ]
 }
 ```

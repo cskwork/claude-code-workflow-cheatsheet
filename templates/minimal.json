@@ -1,7 +1,6 @@
 {
   "_comment": "Minimal/vanilla Claude Code - built-in commands only, no harness required",
   "companyAnnouncements": [
-    "[Workflows] Dev: /plan -> /code-review | Bug: /build-fix",
-    "[Workflows] Docs: /docs \"lib\" | Session: /save-session, /resume-session"
+    "[Workflows] Dev: /plan -> /code-review | Bug: /build-fix\n[Workflows] Docs: /docs \"lib\" | Session: /save-session, /resume-session"
   ]
 }
