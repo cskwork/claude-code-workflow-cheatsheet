@@ -12,12 +12,13 @@ Configure `companyAnnouncements` in `~/.claude/settings.json` with workflow chea
 ## Usage
 
 ```
-/setup-announcements                      # Auto-detect installed commands
-/setup-announcements --harness ecc        # ECC (Everything Claude Code) preset
-/setup-announcements --harness omcc       # Oh My Claude Code preset
-/setup-announcements --harness superpowers # Superpowers (obra) preset
-/setup-announcements --harness minimal    # Vanilla Claude Code preset
-/setup-announcements --harness custom     # Interactive custom selection
+/setup-announcements                        # Auto-detect installed commands
+/setup-announcements --harness ecc          # ECC (Everything Claude Code) preset
+/setup-announcements --harness omcc         # Oh My Claude Code preset
+/setup-announcements --harness superpowers  # Superpowers (obra) preset
+/setup-announcements --harness mattpocock   # Matt Pocock's engineering skills preset
+/setup-announcements --harness minimal      # Vanilla Claude Code preset
+/setup-announcements --harness custom       # Interactive custom selection
 ```
 
 ## Supported Harnesses
@@ -27,6 +28,7 @@ Configure `companyAnnouncements` in `~/.claude/settings.json` with workflow chea
 | Everything Claude Code (ECC) | Standard slash: `/plan`, `/tdd`, `/verify` | orchestrate, TDD, multi-model, eval | `ecc` |
 | Oh My Claude Code (OMCC) | Namespaced: `/oh-my-claudecode:autopilot` + magic keywords: `autopilot:`, `ralph:`, `ulw` | autopilot, team, ralph, ultrawork | `omcc` |
 | Superpowers (obra) | Skill-based: `/brainstorming`, `/writing-plans`, `/executing-plans` | brainstorm, plan, TDD, review, worktrees | `superpowers` |
+| Matt Pocock's skills | Engineering slash: `/diagnose`, `/tdd`, `/to-prd`, `/to-issues`, `/triage` | setup, plan, bug, feature, triage, architecture | `mattpocock` |
 | Vanilla Claude Code | Built-in only: `/plan`, `/code-review` | plan, review | `minimal` |
 | Custom | User-selected | Any combination | `custom` |
 
@@ -89,6 +91,19 @@ Tools:      /systematic-debugging (bugs) | /dispatching-parallel-agents (paralle
 Meta:       /writing-skills, /using-superpowers
 ```
 
+### Matt Pocock's skills
+
+Disciplined engineering workflows. Install: `npx skills add https://github.com/mattpocock/skills`, then `/setup-matt-pocock-skills` once per repo.
+
+```
+Setup:      /setup-matt-pocock-skills (once per repo)
+Plan:       /grill-with-docs -> /to-prd -> /to-issues
+Bug:        /diagnose (6-phase: feedback loop -> reproduce -> hypothesise -> instrument -> fix+regression -> cleanup)
+Feature:    /tdd (vertical tracer bullets) | /prototype (LOGIC or UI)
+Triage:     /triage (state machine: needs-triage/needs-info/ready-for-agent/ready-for-human/wontfix)
+Explore:    /zoom-out | /improve-codebase-architecture
+```
+
 ### Vanilla Claude Code (Minimal)
 
 Built-in commands only, no harness required.
@@ -102,7 +117,7 @@ Session:    /save-session, /resume-session
 ## Output Format
 
 The skill generates a JSON array for `companyAnnouncements` in settings.json. Each entry is one workflow category line:
-- Prefixed with `[Workflows]` (ECC/minimal), `[OMC]` (OMCC), or `[Superpowers]` (obra)
+- Prefixed with `[Workflows]` (ECC/minimal), `[OMC]` (OMCC), `[Superpowers]` (obra), or `[Matt]` (mattpocock)
 - Arrow `->` for sequential steps
 - Comma `,` for alternatives
 - Pipe `|` to separate sub-categories
