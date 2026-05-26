@@ -10,7 +10,7 @@
 
 ## The Problem
 
-You installed [Superpowers](https://github.com/obra/superpowers), [Everything Claude Code](https://github.com/anthropics/everything-claude-code), [Oh My Claude Code](https://github.com/yeachan-heo/oh-my-claudecode), or built your own commands — then forgot half of them exist. You end up using the same 3 commands while 40+ sit unused.
+You installed [Superpowers](https://github.com/obra/superpowers), [Everything Claude Code](https://github.com/anthropics/everything-claude-code), [Oh My Claude Code](https://github.com/yeachan-heo/oh-my-claudecode), [Matt Pocock's skills](https://github.com/mattpocock/skills), or built your own commands — then forgot half of them exist. You end up using the same 3 commands while 40+ sit unused.
 
 ## The Solution
 
@@ -166,6 +166,7 @@ settings.json                          Claude's System Prompt
 | [Superpowers](https://github.com/obra/superpowers) | 14 skills | `/brainstorming`, `/writing-plans`, `/executing-plans` | `superpowers` |
 | [Everything Claude Code](https://github.com/anthropics/everything-claude-code) | 40+ | `/plan`, `/tdd`, `/verify` | `ecc` |
 | [Oh My Claude Code](https://github.com/yeachan-heo/oh-my-claudecode) | 20+ | `/oh-my-claudecode:*` + magic keywords | `omcc` |
+| [Matt Pocock's skills](https://github.com/mattpocock/skills) | 6 workflows | `/diagnose`, `/tdd`, `/to-prd`, `/to-issues`, `/triage` | `mattpocock` |
 | Vanilla Claude Code | Built-in | `/plan`, `/code-review` | `minimal` |
 | Custom | Your own | Any combination | `custom` |
 
@@ -266,6 +267,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - [Superpowers](https://github.com/obra/superpowers) — Agentic skills framework & dev methodology
 - [Everything Claude Code](https://github.com/anthropics/everything-claude-code) — Comprehensive skill/command harness
 - [Oh My Claude Code](https://github.com/yeachan-heo/oh-my-claudecode) — Autonomous agent workflows
+- [Matt Pocock's skills](https://github.com/mattpocock/skills) — Disciplined engineering workflows (plan / bug / feature / triage / explore)
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Official documentation
 
 ---
