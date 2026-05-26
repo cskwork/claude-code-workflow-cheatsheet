@@ -118,12 +118,12 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 ```json
 {
   "companyAnnouncements": [
-    "[Matt] Setup: /setup-matt-pocock-skills (once per repo — configures issue tracker + 5 triage labels + CONTEXT.md/ADR layout)\n[Matt] Plan: /grill-with-docs -> /to-prd -> /to-issues (interview against CONTEXT.md, synthesize PRD, split into vertical-slice tracer-bullet issues)\n[Matt] Bug: /diagnose (feedback loop -> reproduce -> 3-5 ranked hypotheses -> instrument one variable -> fix + regression test -> cleanup + post-mortem)\n[Matt] Feature: /tdd (vertical tracer bullets one test -> one impl; NEVER write all tests then all code) | /prototype (throwaway: LOGIC terminal app or UI variants)\n[Matt] Triage: /triage (state machine over needs-triage/needs-info/ready-for-agent/ready-for-human/wontfix; AI comments must carry disclaimer)\n[Matt] Explore: /zoom-out (unfamiliar code -> module + caller map) | /improve-codebase-architecture (shallow -> deep modules; HTML report in $TMPDIR)"
+    "[Matt] Plan: /grill-with-docs -> /to-prd -> /to-issues (interview against CONTEXT.md, synthesize PRD, split into vertical-slice tracer-bullet issues)\n[Matt] Bug: /diagnose (feedback loop -> reproduce -> 3-5 ranked hypotheses -> instrument one variable -> fix + regression test -> cleanup + post-mortem)\n[Matt] Feature: /tdd (vertical tracer bullets one test -> one impl; NEVER write all tests then all code) | /prototype (throwaway: LOGIC terminal app or UI variants)\n[Matt] Triage: /triage — sort a new/unsorted issue into needs-info (ask reporter) / ready-for-agent (AFK can grab it) / ready-for-human (judgment call) / wontfix. Use when issues pile up or before handing one to an agent.\n[Matt] Explore: /zoom-out (unfamiliar code -> module + caller map) | /improve-codebase-architecture (shallow -> deep modules; HTML report in $TMPDIR)"
   ]
 }
 ```
 
-Install Matt's skills first: `npx skills add https://github.com/mattpocock/skills` (then run `/setup-matt-pocock-skills` once per repo).
+Install Matt's skills first: `npx skills add https://github.com/mattpocock/skills`. Run `/setup-matt-pocock-skills` once per repo before first use — this configures the issue tracker (GitHub/GitLab/local), maps your 5 triage labels, and locates `CONTEXT.md`/`docs/adr/`.
 
 </details>
 
