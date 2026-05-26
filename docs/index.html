@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>claude-code-workflow-cheatsheet — Never forget a slash command again</title>
+<meta name="description" content="Auto-generated workflow cheatsheets that live inside Claude Code. Presets for Superpowers, ECC, OMCC, Matt Pocock, and custom harnesses." />
+<meta property="og:title" content="claude-code-workflow-cheatsheet" />
+<meta property="og:description" content="Never forget a slash command again. Workflow muscle memory injected into every Claude Code session." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cskwork.github.io/claude-code-workflow-cheatsheet/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elev: #11141a;
+    --bg-elev-2: #161a22;
+    --border: #1f2530;
+    --border-strong: #2a3140;
+    --fg: #e6e8ec;
+    --fg-dim: #9aa3b2;
+    --fg-mute: #6a7281;
+    --accent: #c4f25c;          /* lime — terminal cursor vibe */
+    --accent-2: #7cf5d2;        /* teal */
+    --accent-3: #f9c66b;        /* mustard for callouts */
+    --danger: #ff6b6b;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* subtle grid backdrop */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { color: var(--accent); }
+  code, pre { font-family: var(--mono); }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ───────── header ───────── */
+  header.site {
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    background: rgba(11,13,16,0.7);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--fg);
+  }
+  .brand .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+  }
+  .nav-links a { color: var(--fg-dim); }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--fg);
+    transition: border-color .15s, background .15s;
+  }
+  .nav-cta:hover { border-color: var(--accent); background: rgba(196,242,92,0.06); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ───────── hero ───────── */
+  .hero {
+    padding: 96px 0 72px;
+    position: relative;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(196,242,92,0.08);
+    border: 1px solid rgba(196,242,92,0.25);
+    padding: 5px 11px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .eyebrow .pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  h1.hero-title {
+    font-size: clamp(38px, 5.5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    margin: 0 0 22px;
+    max-width: 880px;
+  }
+  h1 .hl { color: var(--accent); }
+  h1 .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--danger);
+    text-decoration-thickness: 3px;
+    color: var(--fg-mute);
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--fg-dim);
+    max-width: 660px;
+    margin: 0 0 36px;
+    line-height: 1.55;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: transform .12s, background .15s, border-color .15s;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0b0d10;
+    font-weight: 600;
+  }
+  .btn-primary:hover { background: #d6ff80; color: #0b0d10; }
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--fg);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn svg { width: 14px; height: 14px; }
+
+  /* terminal frame */
+  .terminal {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.04) inset,
+      0 24px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--bg-elev-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar .tdot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: #2a3140;
+  }
+  .terminal-bar .tdot:nth-child(1) { background: #ff5f57; }
+  .terminal-bar .tdot:nth-child(2) { background: #febc2e; }
+  .terminal-bar .tdot:nth-child(3) { background: #28c840; }
+  .terminal-bar .tlabel {
+    margin-left: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-mute);
+  }
+  .terminal-body {
+    padding: 22px 24px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--fg);
+    overflow-x: auto;
+  }
+  .terminal-body .comment { color: var(--fg-mute); }
+  .terminal-body .tag {
+    color: var(--accent-2);
+    font-weight: 500;
+  }
+  .terminal-body .cmd { color: var(--accent); }
+  .terminal-body .arrow { color: var(--fg-mute); }
+  .terminal-body .pipe { color: var(--accent-3); }
+
+  .hero-meta {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-mute);
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-meta span::before {
+    content: "›";
+    color: var(--accent);
+  }
+
+  /* ───────── section base ───────── */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  .section-lead {
+    color: var(--fg-dim);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 0 48px;
+  }
+
+  /* ───────── problem / solution split ───────── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 800px) {
+    .split { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .card h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-family: var(--mono);
+    color: var(--fg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card.problem h3::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--danger);
+    box-shadow: 0 0 8px var(--danger);
+  }
+  .card.solution h3::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .card p { color: var(--fg-dim); margin: 0 0 12px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card .stat {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--fg-mute);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-strong);
+  }
+  .card .stat b { color: var(--accent); font-weight: 600; }
+
+  /* ───────── how it works flow ───────── */
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 16px;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+  @media (max-width: 900px) {
+    .flow {
+      grid-template-columns: 1fr;
+    }
+    .flow .arrow-h { display: none; }
+  }
+  .flow-step {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .flow-step .step-n {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .flow-step .step-t {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .flow-step .step-d {
+    color: var(--fg-dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .arrow-h {
+    align-self: center;
+    color: var(--fg-mute);
+    font-family: var(--mono);
+    font-size: 22px;
+  }
+
+  /* ───────── presets tabs ───────── */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    color: var(--fg-dim);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color .15s, border-color .15s;
+  }
+  .tab:hover { color: var(--fg); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active { display: block; }
+  .panel-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 16px 0 18px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--fg-mute);
+  }
+  .panel-meta b { color: var(--fg); font-weight: 500; }
+
+  /* code blocks */
+  .code-wrap {
+    position: relative;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .code-wrap pre {
+    margin: 0;
+    padding: 20px 22px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--fg);
+    overflow-x: auto;
+  }
+  .copy {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--bg-elev-2);
+    color: var(--fg-dim);
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .copy:hover { color: var(--accent); border-color: var(--accent); }
+  .copy.ok { color: var(--accent); border-color: var(--accent); }
+
+  .tk-str { color: #c4e89e; }
+  .tk-key { color: var(--accent-2); }
+  .tk-punc { color: var(--fg-mute); }
+  .tk-cmd { color: var(--accent-3); }
+
+  /* ───────── install ───────── */
+  .install-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 720px) {
+    .install-grid { grid-template-columns: 1fr; }
+  }
+  .install-card h3 {
+    font-family: var(--mono);
+    font-size: 14px;
+    margin: 0 0 12px;
+    color: var(--fg);
+  }
+  .install-card .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    background: rgba(196,242,92,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ───────── faq ───────── */
+  details {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    transition: border-color .15s;
+  }
+  details:hover { border-color: var(--border-strong); }
+  details[open] { border-color: var(--accent); }
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    font-family: var(--mono);
+    color: var(--fg-mute);
+    font-size: 20px;
+    line-height: 1;
+  }
+  details[open] summary::after { content: "−"; color: var(--accent); }
+  details p {
+    color: var(--fg-dim);
+    margin: 14px 0 0;
+    font-size: 15px;
+  }
+
+  /* ───────── footer ───────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 60px;
+    color: var(--fg-mute);
+    font-size: 13.5px;
+    font-family: var(--mono);
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .foot-links { display: flex; gap: 20px; }
+  .foot-links a { color: var(--fg-dim); }
+  .foot-links a:hover { color: var(--accent); }
+
+  /* utilities */
+  .mono { font-family: var(--mono); }
+  .dim { color: var(--fg-dim); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <span class="dot"></span>
+      <span>claude-code-workflow-cheatsheet</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#how">How it works</a>
+      <a href="#presets">Presets</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/cskwork/claude-code-workflow-cheatsheet" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.5-1.08-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.58 7.58 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.74.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      <span>cskwork/claude-code-workflow-cheatsheet</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ───────── HERO ───────── -->
+<section class="hero" style="border-top:0;">
+  <div class="container">
+    <span class="eyebrow"><span class="pulse"></span> Claude Code Skill · MIT licensed</span>
+    <h1 class="hero-title">
+      Never forget a <span class="hl">/slash command</span> again.
+    </h1>
+    <p class="hero-sub">
+      Auto-generated workflow cheatsheets that live inside Claude Code via the <code style="color:var(--accent-2);background:rgba(124,245,210,0.08);padding:2px 6px;border-radius:4px;font-size:0.9em;">companyAnnouncements</code> field. Claude sees your full toolkit at the start of every session — and starts suggesting the right command chain instead of defaulting to <code style="color:var(--fg-mute);font-size:0.9em;">/plan</code> for everything.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#install">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5L7.5 11l-3-3 1-1 2 2 3-3 1 1.5z"/></svg>
+        Quick start
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/cskwork/claude-code-workflow-cheatsheet" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.24.83 1.24.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.5-1.08-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.58 7.58 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.74.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        <span class="tlabel">~/.claude/settings.json &nbsp;·&nbsp; injected into Claude's system prompt</span>
+      </div>
+      <div class="terminal-body">
+<span class="comment"># What Claude sees at the start of every session</span>
+<span class="tag">[Workflows]</span> Dev:     <span class="cmd">/orchestrate</span> feature "desc" <span class="arrow">→</span> <span class="cmd">/e2e</span>
+<span class="tag">[Workflows]</span> Quality: <span class="cmd">/code-review</span> <span class="arrow">→</span> <span class="cmd">/refactor-clean</span> <span class="arrow">→</span> <span class="cmd">/verify</span>
+<span class="tag">[Workflows]</span> Multi:   <span class="cmd">/multi-plan</span> <span class="arrow">→</span> <span class="cmd">/multi-execute</span> <span class="pipe">|</span> <span class="cmd">/devfleet</span>
+<span class="tag">[Workflows]</span> Learn:   <span class="cmd">/learn</span> <span class="arrow">→</span> <span class="cmd">/learn-eval</span> <span class="arrow">→</span> <span class="cmd">/skill-create</span>
+<span class="tag">[OMC]</span>       Auto:    <span class="cmd">autopilot:</span> desc <span class="pipe">|</span> Persist: <span class="cmd">ralph:</span> desc
+<span class="tag">[Superpowers]</span> Design: <span class="cmd">/brainstorming</span> <span class="arrow">→</span> <span class="cmd">/writing-plans</span>
+<span class="comment"># … ~7 lines, ~few hundred tokens, zero latency cost</span>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span>5 ready-made presets</span>
+      <span>Auto-detects installed commands</span>
+      <span>Cross-platform · macOS / Windows / Linux</span>
+      <span>Skill or manual install</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PROBLEM / SOLUTION ───────── -->
+<section id="problem">
+  <div class="container">
+    <div class="section-eyebrow">01 · The gap</div>
+    <h2>You installed 40+ commands. You use 3.</h2>
+    <p class="section-lead">
+      Every harness — Superpowers, ECC, OMCC, Matt Pocock's — ships with dozens of carefully designed workflows. But Claude doesn't see them up-front, so neither do you.
+    </p>
+
+    <div class="split">
+      <div class="card problem">
+        <h3>Without a cheatsheet</h3>
+        <p>You type <code class="mono dim">/plan</code> reflexively. Claude doesn't know <code class="mono dim">/orchestrate</code>, <code class="mono dim">/diagnose</code>, or <code class="mono dim">autopilot:</code> exist until you remember to use them.</p>
+        <p>The slash menu shows names, not chains. The right tool for a bug is buried three levels deep. Workflow muscle memory never forms.</p>
+        <div class="stat"><b>40+</b> commands installed · <b>3</b> used regularly · <b>0</b> chains discovered organically</div>
+      </div>
+      <div class="card solution">
+        <h3>With companyAnnouncements</h3>
+        <p>This skill scans your installed commands, categorises them into workflow chains, and writes them to <code class="mono" style="color:var(--accent-2);background:rgba(124,245,210,0.08);padding:2px 5px;border-radius:4px;font-size:0.9em;">companyAnnouncements</code>.</p>
+        <p>Claude reads them at session start and proactively suggests the right chain — <code class="mono dim">/orchestrate bugfix "login crash" → /e2e</code> — because it now knows the full toolkit.</p>
+        <div class="stat"><b>+</b> persistent memory · <b>+</b> proactive suggestions · <b>0</b> latency overhead</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── HOW IT WORKS ───────── -->
+<section id="how">
+  <div class="container">
+    <div class="section-eyebrow">02 · How it works</div>
+    <h2>One JSON field. Every session. Forever.</h2>
+    <p class="section-lead">
+      Claude Code's <code style="color:var(--accent-2);background:rgba(124,245,210,0.08);padding:2px 6px;border-radius:4px;font-size:0.9em;">companyAnnouncements</code> field is designed for team broadcasts. This skill repurposes it as persistent workflow memory.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="step-n">STEP 01</div>
+        <div class="step-t">Detect commands</div>
+        <div class="step-d">Scans <code class="mono dim">~/.claude/commands/</code> and project <code class="mono dim">.claude/commands/</code>, recognises harness signatures (Superpowers, ECC, OMCC, Matt Pocock).</div>
+      </div>
+      <div class="arrow-h">→</div>
+      <div class="flow-step">
+        <div class="step-n">STEP 02</div>
+        <div class="step-t">Categorise into chains</div>
+        <div class="step-d">Groups by workflow phase — Dev, Quality, Multi-agent, Learn, Session — using <code class="mono">→</code>, <code class="mono">|</code>, <code class="mono">,</code> as a tiny grammar.</div>
+      </div>
+      <div class="arrow-h">→</div>
+      <div class="flow-step">
+        <div class="step-n">STEP 03</div>
+        <div class="step-t">Inject into settings.json</div>
+        <div class="step-d">Writes a single newline-joined string to <code class="mono dim">companyAnnouncements</code>. Claude reads it at every session start, zero latency.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;">
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[Workflows] Dev: /orchestrate feature \"desc\" -> /e2e\n[Workflows] Quality: /code-review -> /refactor-clean -> /verify"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"[Workflows] Dev: /orchestrate feature \"desc\" -&gt; /e2e\n[Workflows] Quality: /code-review -&gt; /refactor-clean -&gt; /verify"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+      <p class="dim" style="font-size:13.5px;margin-top:14px;">
+        <b style="color:var(--accent-3);font-family:var(--mono);font-size:12.5px;">Important —</b>
+        the field is <code class="mono">string[]</code>. With multiple items Claude Code rotates one per session. Use a <b>single item with <code class="mono">\n</code> separators</b> to show all lines every session.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PRESETS ───────── -->
+<section id="presets">
+  <div class="container">
+    <div class="section-eyebrow">03 · Presets</div>
+    <h2>Bring your harness. We brought the cheatsheet.</h2>
+    <p class="section-lead">
+      Five ready-made presets. Pick one, paste, done. Or mix-and-match for hybrid setups.
+    </p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="superpowers">Superpowers</button>
+      <button class="tab" data-tab="ecc">Everything Claude Code</button>
+      <button class="tab" data-tab="omcc">Oh My Claude Code</button>
+      <button class="tab" data-tab="matt">Matt Pocock</button>
+      <button class="tab" data-tab="minimal">Vanilla</button>
+    </div>
+
+    <!-- Superpowers -->
+    <div class="tab-panel active" data-panel="superpowers">
+      <div class="panel-meta">
+        <span><b>Author:</b> <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra/superpowers</a></span>
+        <span><b>Commands:</b> 14 skills</span>
+        <span><b>Style:</b> /brainstorming, /writing-plans, /executing-plans</span>
+      </div>
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[Superpowers] Design: /brainstorming -> /writing-plans\n[Superpowers] Execute: /using-git-worktrees -> (/executing-plans or /subagent-driven-development)\n[Superpowers] Per Task: /test-driven-development -> /requesting-code-review -> /receiving-code-review\n[Superpowers] Finish: /verification-before-completion -> /finishing-a-development-branch\n[Superpowers] Tools: /systematic-debugging (bugs) | /dispatching-parallel-agents (parallel) | /writing-skills (meta)"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"<span class="tk-cmd">[Superpowers]</span> Design: /brainstorming -&gt; /writing-plans\n<span class="tk-cmd">[Superpowers]</span> Execute: /using-git-worktrees -&gt; (/executing-plans or /subagent-driven-development)\n<span class="tk-cmd">[Superpowers]</span> Per Task: /test-driven-development -&gt; /requesting-code-review -&gt; /receiving-code-review\n<span class="tk-cmd">[Superpowers]</span> Finish: /verification-before-completion -&gt; /finishing-a-development-branch\n<span class="tk-cmd">[Superpowers]</span> Tools: /systematic-debugging (bugs) | /dispatching-parallel-agents (parallel) | /writing-skills (meta)"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+    </div>
+
+    <!-- ECC -->
+    <div class="tab-panel" data-panel="ecc">
+      <div class="panel-meta">
+        <span><b>Author:</b> <a href="https://github.com/anthropics/everything-claude-code" target="_blank" rel="noopener">anthropics/everything-claude-code</a></span>
+        <span><b>Commands:</b> 40+</span>
+        <span><b>Style:</b> /plan, /tdd, /verify</span>
+      </div>
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[Workflows] Dev: /orchestrate feature|bugfix \"desc\" -> /e2e | Manual: /plan -> /tdd -> /code-review -> /verify\n[Workflows] Reproduce: /e2e (as-is) -> /orchestrate bugfix -> /e2e (to-be) | Build: /build-fix -> /verify\n[Workflows] Quality: /code-review -> /refactor-clean -> /verify | /quality-gate | /eval define|check|report\n[Workflows] Multi: /multi-plan -> /multi-execute | /devfleet \"task\" | /model-route \"task\" --budget low|med|high\n[Workflows] Docs: /update-docs, /update-codemaps | Ref: /docs \"lib\" | Loop: /loop-start sequential|continuous-pr\n[Workflows] Learn: /learn -> /learn-eval -> /skill-create | Instincts: /instinct-status -> /evolve -> /promote\n[Workflows] Session: /save-session, /resume-session | Meta: /harness-audit, /skill-health, /context-budget"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"<span class="tk-cmd">[Workflows]</span> Dev: /orchestrate feature|bugfix \"desc\" -&gt; /e2e | Manual: /plan -&gt; /tdd -&gt; /code-review -&gt; /verify\n<span class="tk-cmd">[Workflows]</span> Reproduce: /e2e (as-is) -&gt; /orchestrate bugfix -&gt; /e2e (to-be) | Build: /build-fix -&gt; /verify\n<span class="tk-cmd">[Workflows]</span> Quality: /code-review -&gt; /refactor-clean -&gt; /verify | /quality-gate | /eval define|check|report\n<span class="tk-cmd">[Workflows]</span> Multi: /multi-plan -&gt; /multi-execute | /devfleet \"task\" | /model-route \"task\" --budget low|med|high\n<span class="tk-cmd">[Workflows]</span> Docs: /update-docs, /update-codemaps | Ref: /docs \"lib\" | Loop: /loop-start sequential|continuous-pr\n<span class="tk-cmd">[Workflows]</span> Learn: /learn -&gt; /learn-eval -&gt; /skill-create | Instincts: /instinct-status -&gt; /evolve -&gt; /promote\n<span class="tk-cmd">[Workflows]</span> Session: /save-session, /resume-session | Meta: /harness-audit, /skill-health, /context-budget"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+    </div>
+
+    <!-- OMCC -->
+    <div class="tab-panel" data-panel="omcc">
+      <div class="panel-meta">
+        <span><b>Author:</b> <a href="https://github.com/yeachan-heo/oh-my-claudecode" target="_blank" rel="noopener">yeachan-heo/oh-my-claudecode</a></span>
+        <span><b>Commands:</b> 20+</span>
+        <span><b>Style:</b> namespaced + magic keywords</span>
+      </div>
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[OMC] Auto: autopilot: desc | Persist: ralph: desc | Parallel: ulw tasks\n[OMC] Team: /oh-my-claudecode:team 3:executor \"task\" | Plan: ralplan | QA: /oh-my-claudecode:ultraqa\n[OMC] Clarify: deep-interview \"idea\" -> omc-plan --consensus -> autopilot: desc\n[OMC] Investigate: /oh-my-claudecode:trace | Tri-Model: ccg \"query\" | Visual: /oh-my-claudecode:visual-verdict\n[OMC] Cleanup: deslop | Skills: /oh-my-claudecode:skill list | Learn: /oh-my-claudecode:learner\n[OMC] Session: /oh-my-claudecode:psm | Release: /oh-my-claudecode:release | Diag: /oh-my-claudecode:omc-doctor"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"<span class="tk-cmd">[OMC]</span> Auto: autopilot: desc | Persist: ralph: desc | Parallel: ulw tasks\n<span class="tk-cmd">[OMC]</span> Team: /oh-my-claudecode:team 3:executor \"task\" | Plan: ralplan | QA: /oh-my-claudecode:ultraqa\n<span class="tk-cmd">[OMC]</span> Clarify: deep-interview \"idea\" -&gt; omc-plan --consensus -&gt; autopilot: desc\n<span class="tk-cmd">[OMC]</span> Investigate: /oh-my-claudecode:trace | Tri-Model: ccg \"query\" | Visual: /oh-my-claudecode:visual-verdict\n<span class="tk-cmd">[OMC]</span> Cleanup: deslop | Skills: /oh-my-claudecode:skill list | Learn: /oh-my-claudecode:learner\n<span class="tk-cmd">[OMC]</span> Session: /oh-my-claudecode:psm | Release: /oh-my-claudecode:release | Diag: /oh-my-claudecode:omc-doctor"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+    </div>
+
+    <!-- Matt -->
+    <div class="tab-panel" data-panel="matt">
+      <div class="panel-meta">
+        <span><b>Author:</b> <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills</a></span>
+        <span><b>Workflows:</b> 5 disciplined chains</span>
+        <span><b>Style:</b> /diagnose, /tdd, /to-prd, /triage</span>
+      </div>
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[Matt] Plan: /grill-with-docs -> /to-prd -> /to-issues\n[Matt] Bug: /diagnose (6-phase: reproduce -> hypothesise -> instrument -> fix+regression -> cleanup)\n[Matt] Feature: /tdd (vertical tracer bullets) | /prototype (LOGIC or UI)\n[Matt] Triage: /triage — needs-info / ready-for-agent / ready-for-human / wontfix\n[Matt] Explore: /zoom-out | /improve-codebase-architecture"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"<span class="tk-cmd">[Matt]</span> Plan: /grill-with-docs -&gt; /to-prd -&gt; /to-issues\n<span class="tk-cmd">[Matt]</span> Bug: /diagnose (6-phase: reproduce -&gt; hypothesise -&gt; instrument -&gt; fix+regression -&gt; cleanup)\n<span class="tk-cmd">[Matt]</span> Feature: /tdd (vertical tracer bullets) | /prototype (LOGIC or UI)\n<span class="tk-cmd">[Matt]</span> Triage: /triage — needs-info / ready-for-agent / ready-for-human / wontfix\n<span class="tk-cmd">[Matt]</span> Explore: /zoom-out | /improve-codebase-architecture"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+      <p class="dim" style="font-size:13px;margin-top:14px;">Install first: <code class="mono">npx skills add https://github.com/mattpocock/skills</code>, then run <code class="mono">/setup-matt-pocock-skills</code> once per repo.</p>
+    </div>
+
+    <!-- Minimal -->
+    <div class="tab-panel" data-panel="minimal">
+      <div class="panel-meta">
+        <span><b>Style:</b> Vanilla Claude Code, no harness required</span>
+        <span><b>Commands:</b> built-in only</span>
+      </div>
+      <div class="code-wrap">
+        <button class="copy" data-copy='{
+  "companyAnnouncements": [
+    "[Workflows] Dev: /plan -> /code-review | Bug: /build-fix\n[Workflows] Docs: /docs \"lib\" | Session: /save-session, /resume-session"
+  ]
+}'>copy</button>
+<pre><span class="tk-punc">{</span>
+  <span class="tk-key">"companyAnnouncements"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span>
+    <span class="tk-str">"<span class="tk-cmd">[Workflows]</span> Dev: /plan -&gt; /code-review | Bug: /build-fix\n<span class="tk-cmd">[Workflows]</span> Docs: /docs \"lib\" | Session: /save-session, /resume-session"</span>
+  <span class="tk-punc">]</span>
+<span class="tk-punc">}</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── INSTALL ───────── -->
+<section id="install">
+  <div class="container">
+    <div class="section-eyebrow">04 · Install</div>
+    <h2>Two paths. Pick one.</h2>
+    <p class="section-lead">Both routes write to the same place — <code class="mono">~/.claude/settings.json</code>. The skill route auto-detects what's installed; the manual route is fastest if you already know your harness.</p>
+
+    <div class="install-grid">
+      <div class="card install-card">
+        <h3>As a Claude Code skill <span class="badge">recommended</span></h3>
+        <div class="code-wrap" style="margin-bottom:14px;">
+          <button class="copy" data-copy="cp -r . ~/.claude/skills/company-announcements">copy</button>
+<pre><span class="tk-punc">$</span> <span class="tk-cmd">cp -r .</span> ~/.claude/skills/company-announcements</pre>
+        </div>
+        <p class="dim" style="font-size:14px;margin:0 0 12px;">Then inside Claude Code:</p>
+        <div class="code-wrap">
+<pre><span class="tk-cmd">/setup-announcements</span>                        <span class="tk-punc"># auto-detect</span>
+<span class="tk-cmd">/setup-announcements</span> --harness superpowers  <span class="tk-punc"># Superpowers</span>
+<span class="tk-cmd">/setup-announcements</span> --harness ecc          <span class="tk-punc"># ECC</span>
+<span class="tk-cmd">/setup-announcements</span> --harness omcc         <span class="tk-punc"># OMCC</span>
+<span class="tk-cmd">/setup-announcements</span> --harness mattpocock   <span class="tk-punc"># Matt Pocock</span></pre>
+        </div>
+      </div>
+
+      <div class="card install-card">
+        <h3>Manual paste <span class="badge">30 seconds</span></h3>
+        <p class="dim" style="font-size:14px;margin:0 0 12px;">Open <code class="mono">~/.claude/settings.json</code>, add the preset for your harness from the <a href="#presets">Presets</a> section, save. Done — every new session picks it up.</p>
+        <div class="code-wrap">
+<pre><span class="tk-cmd">$ open</span> ~/.claude/settings.json
+<span class="tk-punc"># paste preset → save → restart Claude Code session</span>
+<span class="tk-punc">#</span>
+<span class="tk-punc"># Verify it loaded:</span>
+<span class="tk-cmd">$ claude</span> -p <span class="tk-str">"what workflows do you have available?"</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FAQ ───────── -->
+<section id="faq">
+  <div class="container">
+    <div class="section-eyebrow">05 · FAQ</div>
+    <h2>The questions everyone asks first.</h2>
+
+    <div style="margin-top:32px;">
+      <details>
+        <summary>Does this slow down Claude Code?</summary>
+        <p>No. <code class="mono">companyAnnouncements</code> is injected into the system prompt — a few hundred tokens at most, with zero added latency per request.</p>
+      </details>
+      <details>
+        <summary>Can I use this without any harness installed?</summary>
+        <p>Yes. Use the <b>Vanilla</b> preset for built-in commands only, or write your own preset for any team-specific workflow.</p>
+      </details>
+      <details>
+        <summary>Why not just list every command and flag?</summary>
+        <p>Claude's attention is finite. Keep it under ~10 lines and focus on chains, not flag references. The slash menu still surfaces individual commands — this layer is for <i>workflow shape</i>.</p>
+      </details>
+      <details>
+        <summary>The field is an array — what if I add multiple items?</summary>
+        <p>Claude Code rotates one item per session (treating the array as a banner rotation). To show the same cheatsheet every session, use a <b>single string with <code class="mono">\n</code> separators</b> — that's what every preset here does.</p>
+      </details>
+      <details>
+        <summary>Does this work in the VS Code / JetBrains extension?</summary>
+        <p>Yes. <code class="mono">settings.json</code> is shared across all Claude Code interfaces — CLI, desktop app, IDE plugins.</p>
+      </details>
+      <details>
+        <summary>Can I mix presets? I run both ECC and OMCC.</summary>
+        <p>Combine them into a single string. Keep the prefix tags (<code class="mono">[Workflows]</code>, <code class="mono">[OMC]</code>) so Claude can tell them apart, and stay under ~10 lines total.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <div style="color:var(--fg);font-weight:500;">claude-code-workflow-cheatsheet</div>
+      <div style="margin-top:4px;">MIT licensed · built for Claude Code · contributions welcome</div>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/cskwork/claude-code-workflow-cheatsheet" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/cskwork/claude-code-workflow-cheatsheet/blob/main/README.md" target="_blank" rel="noopener">README</a>
+      <a href="https://github.com/cskwork/claude-code-workflow-cheatsheet/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+      <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">Claude Code docs</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // tab switching
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector(`.tab-panel[data-panel="${t.dataset.tab}"]`).classList.add('active');
+  }));
+
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const orig = btn.textContent;
+        btn.textContent = 'copied';
+        btn.classList.add('ok');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok'); }, 1600);
+      } catch (e) { btn.textContent = 'press ⌘C'; }
+    });
+  });
+</script>
+</body>
+</html>
