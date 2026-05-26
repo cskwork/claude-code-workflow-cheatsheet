@@ -93,14 +93,13 @@ Meta:       /writing-skills, /using-superpowers
 
 ### Matt Pocock's skills
 
-Disciplined engineering workflows. Install: `npx skills add https://github.com/mattpocock/skills`, then `/setup-matt-pocock-skills` once per repo.
+Disciplined engineering workflows. Install: `npx skills add https://github.com/mattpocock/skills`, then `/setup-matt-pocock-skills` once per repo (one-time scaffolding — kept out of the persistent cheatsheet so it doesn't add noise after the first run).
 
 ```
-Setup:      /setup-matt-pocock-skills (once per repo)
 Plan:       /grill-with-docs -> /to-prd -> /to-issues
 Bug:        /diagnose (6-phase: feedback loop -> reproduce -> hypothesise -> instrument -> fix+regression -> cleanup)
 Feature:    /tdd (vertical tracer bullets) | /prototype (LOGIC or UI)
-Triage:     /triage (state machine: needs-triage/needs-info/ready-for-agent/ready-for-human/wontfix)
+Triage:     /triage — sort new issues into needs-info / ready-for-agent / ready-for-human / wontfix; run when issues pile up or before handing one to an agent
 Explore:    /zoom-out | /improve-codebase-architecture
 ```
 
