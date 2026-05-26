@@ -1,0 +1,7 @@
+{
+  "_comment": "Matt Pocock's engineering skills - 10 disciplined workflows for plan, bug, feature, triage, architecture, and exploration",
+  "_source": "https://github.com/mattpocock/skills",
+  "companyAnnouncements": [
+    "[Matt] Setup: /setup-matt-pocock-skills (once per repo — configures issue tracker + 5 triage labels + CONTEXT.md/ADR layout)\n[Matt] Plan: /grill-with-docs -> /to-prd -> /to-issues (interview against CONTEXT.md, synthesize PRD, split into vertical-slice tracer-bullet issues)\n[Matt] Bug: /diagnose (feedback loop -> reproduce -> 3-5 ranked hypotheses -> instrument one variable -> fix + regression test -> cleanup + post-mortem)\n[Matt] Feature: /tdd (vertical tracer bullets one test -> one impl; NEVER write all tests then all code) | /prototype (throwaway: LOGIC terminal app or UI variants)\n[Matt] Triage: /triage (state machine over needs-triage/needs-info/ready-for-agent/ready-for-human/wontfix; AI comments must carry disclaimer)\n[Matt] Explore: /zoom-out (unfamiliar code -> module + caller map) | /improve-codebase-architecture (shallow -> deep modules; HTML report in $TMPDIR)"
+  ]
+}

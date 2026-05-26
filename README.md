@@ -49,10 +49,11 @@ cp -r . ~/.claude/skills/company-announcements
 Then in Claude Code:
 
 ```
-/setup-announcements                       # Auto-detect your installed commands
-/setup-announcements --harness superpowers # Superpowers preset
-/setup-announcements --harness ecc         # Everything Claude Code preset
-/setup-announcements --harness omcc        # Oh My Claude Code preset
+/setup-announcements                        # Auto-detect your installed commands
+/setup-announcements --harness superpowers  # Superpowers preset
+/setup-announcements --harness ecc          # Everything Claude Code preset
+/setup-announcements --harness omcc         # Oh My Claude Code preset
+/setup-announcements --harness mattpocock   # Matt Pocock's engineering skills preset
 ```
 
 ### Option 2: Manual Install (30 seconds)
@@ -108,6 +109,21 @@ Pick a preset and paste it into `~/.claude/settings.json`:
   ]
 }
 ```
+
+</details>
+
+<details>
+<summary><b>Matt Pocock's skills</b> - 6 disciplined workflows (plan, bug, feature, triage, explore)</summary>
+
+```json
+{
+  "companyAnnouncements": [
+    "[Matt] Setup: /setup-matt-pocock-skills (once per repo — configures issue tracker + 5 triage labels + CONTEXT.md/ADR layout)\n[Matt] Plan: /grill-with-docs -> /to-prd -> /to-issues (interview against CONTEXT.md, synthesize PRD, split into vertical-slice tracer-bullet issues)\n[Matt] Bug: /diagnose (feedback loop -> reproduce -> 3-5 ranked hypotheses -> instrument one variable -> fix + regression test -> cleanup + post-mortem)\n[Matt] Feature: /tdd (vertical tracer bullets one test -> one impl; NEVER write all tests then all code) | /prototype (throwaway: LOGIC terminal app or UI variants)\n[Matt] Triage: /triage (state machine over needs-triage/needs-info/ready-for-agent/ready-for-human/wontfix; AI comments must carry disclaimer)\n[Matt] Explore: /zoom-out (unfamiliar code -> module + caller map) | /improve-codebase-architecture (shallow -> deep modules; HTML report in $TMPDIR)"
+  ]
+}
+```
+
+Install Matt's skills first: `npx skills add https://github.com/mattpocock/skills` (then run `/setup-matt-pocock-skills` once per repo).
 
 </details>
 
