@@ -125,6 +125,8 @@ Pick a preset and paste it into `~/.claude/settings.json`:
 
 Install Matt's skills first: `npx skills add https://github.com/mattpocock/skills`. Run `/setup-matt-pocock-skills` once per repo before first use — this configures the issue tracker (GitHub/GitLab/local), maps your 5 triage labels, and locates `CONTEXT.md`/`docs/adr/`.
 
+For the mental model, skill-authoring rules, and a full quick-reference of Matt's canonical skills, see **[docs/mattpocock-cheatsheet.md](docs/mattpocock-cheatsheet.md)**.
+
 </details>
 
 ---
@@ -267,7 +269,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - [Superpowers](https://github.com/obra/superpowers) — Agentic skills framework & dev methodology
 - [Everything Claude Code](https://github.com/anthropics/everything-claude-code) — Comprehensive skill/command harness
 - [Oh My Claude Code](https://github.com/yeachan-heo/oh-my-claudecode) — Autonomous agent workflows
-- [Matt Pocock's skills](https://github.com/mattpocock/skills) — Disciplined engineering workflows (plan / bug / feature / triage / explore)
+- [Matt Pocock's skills](https://github.com/mattpocock/skills) — Disciplined engineering workflows (plan / bug / feature / triage / explore). See the [field guide](docs/mattpocock-cheatsheet.md).
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Official documentation
 
 ---
