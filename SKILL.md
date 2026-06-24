@@ -1,3 +1,8 @@
+---
+name: claude-code-workflow-cheatsheet
+description: Generate Claude Code companyAnnouncements workflow cheat sheets for installed command harnesses. Use when the user asks to set up announcements, workflow cheatsheets, command-harness hints, or persistent Claude Code workflow guidance for ECC, Oh My Claude Code, Superpowers, Matt Pocock skills, vanilla Claude Code, or custom commands.
+---
+
 # Company Announcements Skill
 
 Configure `companyAnnouncements` in `~/.claude/settings.json` with workflow cheat sheets tailored to your installed harness and commands.
