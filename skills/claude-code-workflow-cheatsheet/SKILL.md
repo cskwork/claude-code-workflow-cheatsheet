@@ -1,6 +1,6 @@
 ---
 name: claude-code-workflow-cheatsheet
-description: Generate Claude Code companyAnnouncements workflow cheat sheets for installed command harnesses. Use when the user asks to set up announcements or persistent workflow guidance for ECC, Oh My Claude Code, Superpowers, Matt Pocock skills, vanilla Claude Code, or custom commands.
+description: Generate companyAnnouncements cheat sheets for installed command harnesses. Use when setting up workflow guidance.
 ---
 
 # Company Announcements Skill
