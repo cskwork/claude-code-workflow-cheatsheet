@@ -8,7 +8,7 @@
       "name": "claude-code-workflow-cheatsheet",
       "source": {
         "source": "url",
-        "url": "https://github.com/cskwork/claude-code-announcements.git",
+        "url": "https://github.com/cskwork/claude-code-workflow-cheatsheet.git",
         "ref": "main"
       },
       "policy": {
