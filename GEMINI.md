@@ -1,4 +1,4 @@
 # claude-code-workflow-cheatsheet
 
-@./SKILL.md
+@./skills/claude-code-workflow-cheatsheet/SKILL.md
 
