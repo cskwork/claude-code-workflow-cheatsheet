@@ -6,8 +6,8 @@
     "name": "cskwork",
     "url": "https://github.com/cskwork"
   },
-  "homepage": "https://github.com/cskwork/claude-code-workflow-cheatsheet",
-  "repository": "https://github.com/cskwork/claude-code-workflow-cheatsheet",
+  "homepage": "https://github.com/cskwork/claude-code-announcements",
+  "repository": "https://github.com/cskwork/claude-code-announcements",
   "license": "MIT",
   "keywords": [
     "claude-code-workflow-cheatsheet",
@@ -25,7 +25,7 @@
     "capabilities": [
       "Instructions"
     ],
-    "websiteURL": "https://github.com/cskwork/claude-code-workflow-cheatsheet",
+    "websiteURL": "https://github.com/cskwork/claude-code-announcements",
     "defaultPrompt": [
       "Use claude-code-workflow-cheatsheet for this task."
     ],

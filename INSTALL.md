@@ -6,7 +6,7 @@
 ### Install
 
 ```bash
-claude plugin marketplace add cskwork/claude-code-workflow-cheatsheet
+claude plugin marketplace add cskwork/claude-code-announcements
 claude plugin install claude-code-workflow-cheatsheet@claude-code-workflow-cheatsheet
 ```
 
@@ -39,7 +39,7 @@ claude plugin marketplace remove claude-code-workflow-cheatsheet
 ### Install
 
 ```bash
-codex plugin marketplace add cskwork/claude-code-workflow-cheatsheet --ref main
+codex plugin marketplace add cskwork/claude-code-announcements --ref main
 codex plugin add claude-code-workflow-cheatsheet@claude-code-workflow-cheatsheet
 ```
 
@@ -66,14 +66,14 @@ codex plugin marketplace remove claude-code-workflow-cheatsheet
 ### Install (extension, always-on)
 
 ```bash
-gemini extensions install https://github.com/cskwork/claude-code-workflow-cheatsheet
+gemini extensions install https://github.com/cskwork/claude-code-announcements
 ```
 
 ### Install (command, opt-in)
 
 ```bash
 mkdir -p ~/.gemini/commands
-curl -fsSL https://raw.githubusercontent.com/cskwork/claude-code-workflow-cheatsheet/main/skills/claude-code-workflow-cheatsheet/agents/gemini.toml \
+curl -fsSL https://raw.githubusercontent.com/cskwork/claude-code-announcements/main/skills/claude-code-announcements/agents/gemini.toml \
   -o ~/.gemini/commands/claude-code-workflow-cheatsheet.toml
 ```
 
@@ -99,8 +99,8 @@ gemini extensions uninstall claude-code-workflow-cheatsheet
 ### Install
 
 ```bash
-npx skills add cskwork/claude-code-workflow-cheatsheet
-npx skills add cskwork/claude-code-workflow-cheatsheet -g
+npx skills add cskwork/claude-code-announcements
+npx skills add cskwork/claude-code-announcements -g
 ```
 
 Type `/claude-code-workflow-cheatsheet` in a new agent chat.
@@ -131,7 +131,7 @@ npx skills remove claude-code-workflow-cheatsheet
 ### Install
 
 ```bash
-agy plugin install https://github.com/cskwork/claude-code-workflow-cheatsheet
+agy plugin install https://github.com/cskwork/claude-code-announcements
 ```
 
 ### Verify
