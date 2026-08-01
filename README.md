@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.png" width="120" alt="logo" /></p>
+
 # claude-code-workflow-cheatsheet
 
 **Never forget a slash command again.** Auto-generated workflow cheatsheets that live inside Claude Code.
