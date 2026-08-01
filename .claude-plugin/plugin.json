@@ -1,0 +1,9 @@
+{
+  "name": "claude-code-workflow-cheatsheet",
+  "version": "0.1.0",
+  "description": "Generate Claude Code companyAnnouncements workflow cheat sheets for installed command harnesses. Use when the user asks to set up announcements or persistent workflow guidance for ECC, Oh My Claude Code, Superpowers, Matt Pocock skills, vanilla Claude Code, or custom commands.",
+  "author": {
+    "name": "cskwork",
+    "url": "https://github.com/cskwork"
+  }
+}

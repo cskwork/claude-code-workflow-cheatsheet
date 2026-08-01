@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "claude-code-workflow-cheatsheet",
+  "description": "Generate Claude Code companyAnnouncements workflow cheat sheets for installed command harnesses. Use when the user asks ",
+  "owner": {
+    "name": "cskwork"
+  },
+  "plugins": [
+    {
+      "name": "claude-code-workflow-cheatsheet",
+      "description": "Generate Claude Code companyAnnouncements workflow cheat sheets for installed command harnesses. Use when the user asks ",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
