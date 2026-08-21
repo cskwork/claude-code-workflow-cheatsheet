@@ -1,30 +1,17 @@
 ---
 name: claude-code-workflow-cheatsheet
-description: Generate companyAnnouncements cheat sheets for installed command harnesses. Use when setting up workflow guidance.
+description: Generates a persistent slash-command cheat sheet in the companyAnnouncements field of Claude Code settings.json. Use when the user asks for a workflow cheat sheet, wants Claude to remember or suggest the right command for a task, or names a harness to preset — ECC, Oh My Claude Code, Superpowers, Matt Pocock's skills, vanilla Claude Code, or custom.
 ---
 
 # Company Announcements Skill
 
 Configure `companyAnnouncements` in `~/.claude/settings.json` with workflow cheat sheets tailored to your installed harness and commands.
 
-## What It Does
+## Steps
 
-1. **Detects** installed slash commands in `~/.claude/commands/` and project `.claude/commands/`
-2. **Categorizes** them into workflow chains (dev, debug, docs, learning, etc.)
-3. **Generates** a `companyAnnouncements` block for `settings.json`
-4. Cross-platform: macOS, Windows, Linux compatible
-
-## Usage
-
-```
-/setup-announcements                        # Auto-detect installed commands
-/setup-announcements --harness ecc          # ECC (Everything Claude Code) preset
-/setup-announcements --harness omcc         # Oh My Claude Code preset
-/setup-announcements --harness superpowers  # Superpowers (obra) preset
-/setup-announcements --harness mattpocock   # Matt Pocock's engineering skills preset
-/setup-announcements --harness minimal      # Vanilla Claude Code preset
-/setup-announcements --harness custom       # Interactive custom selection
-```
+1. **Pick the preset.** Take the preset ID named in the request — `ecc`, `omcc`, `superpowers`, `mattpocock`, `minimal`, or `custom`. With none named, list `~/.claude/commands/` and the project's `.claude/commands/`, then match what is installed against the harness table below. Done when one preset ID is chosen and named back to the user.
+2. **Collect the workflow lines.** For a named harness preset, copy the `companyAnnouncements` value from `templates/<preset>.json` at this skill's repo root verbatim. For `custom`, use the commands the user picks; for auto-detect, use the commands you found — building lines from the pattern blocks below in the Output Format shape. Done when every detected command sits in a line or was dropped on purpose.
+3. **Configure settings.json.** Merge the result into `companyAnnouncements` in `~/.claude/settings.json`, leaving the file's other keys intact. Done when the file still parses as JSON and `companyAnnouncements` holds exactly one string.
 
 ## Supported Harnesses
 
@@ -120,17 +107,12 @@ Session:    /save-session, /resume-session
 
 ## Output Format
 
-The skill generates a JSON array for `companyAnnouncements` in settings.json. Each entry is one workflow category line:
-- Prefixed with `[Workflows]` (ECC/minimal), `[OMC]` (OMCC), `[Superpowers]` (obra), or `[Matt]` (mattpocock)
+`companyAnnouncements` takes a `string[]`, and Claude Code shows one randomly chosen element per session. Keep every workflow category line in a **single element**, separated by `\n` — the shape each file in `templates/` already uses.
+
+- Prefix each line with `[Workflows]` (ECC/minimal), `[OMC]` (OMCC), `[Superpowers]` (obra), or `[Matt]` (mattpocock)
 - Arrow `->` for sequential steps
-- Comma `,` for alternatives
-- Pipe `|` to separate sub-categories
+- Comma `,` for related commands
+- Pipe `|` for alternatives and sub-category breaks
 - Max ~120 chars per line for readability
-
-## Cross-Platform Notes
-
-- All commands use forward slashes (Claude Code convention, not OS paths)
-- No shell-specific syntax in announcement strings
-- JSON uses escaped quotes for inner quotes: `\"desc\"`
-- Works identically on macOS (zsh/bash), Windows (PowerShell/cmd), Linux (bash/zsh)
-- Magic keywords (OMCC) work on all platforms -- they are Claude Code prompts, not shell commands
+- JSON escapes inner quotes: `\"desc\"`
+- Entries are Claude Code prompt text, not shell commands or OS paths: forward-slash commands and OMCC magic keywords (`autopilot:`, `ulw`) go in verbatim and read the same on macOS, Windows, and Linux
