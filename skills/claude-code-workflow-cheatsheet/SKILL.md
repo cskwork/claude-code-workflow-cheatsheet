@@ -1,6 +1,6 @@
 ---
 name: claude-code-workflow-cheatsheet
-description: Generates a persistent slash-command cheat sheet in the companyAnnouncements field of Claude Code settings.json. Use when the user asks for a workflow cheat sheet, wants Claude to remember or suggest the right command for a task, or names a harness to preset — ECC, Oh My Claude Code, Superpowers, Matt Pocock's skills, vanilla Claude Code, or custom.
+description: Configure a persistent workflow cheat sheet for Claude Code’s startup announcements using an installed-command inventory or a named harness preset.
 ---
 
 # Company Announcements Skill
@@ -10,8 +10,8 @@ Configure `companyAnnouncements` in `~/.claude/settings.json` with workflow chea
 ## Steps
 
 1. **Pick the preset.** Take the preset ID named in the request — `ecc`, `omcc`, `superpowers`, `mattpocock`, `minimal`, or `custom`. With none named, list `~/.claude/commands/` and the project's `.claude/commands/`, then match what is installed against the harness table below. Done when one preset ID is chosen and named back to the user.
-2. **Collect the workflow lines.** For a named harness preset, copy the `companyAnnouncements` value from `templates/<preset>.json` at this skill's repo root verbatim. For `custom`, use the commands the user picks; for auto-detect, use the commands you found — building lines from the pattern blocks below in the Output Format shape. Done when every detected command sits in a line or was dropped on purpose.
-3. **Configure settings.json.** Merge the result into `companyAnnouncements` in `~/.claude/settings.json`, leaving the file's other keys intact. Done when the file still parses as JSON and `companyAnnouncements` holds exactly one string.
+2. **Collect the workflow lines.** For a named harness preset, copy the `companyAnnouncements` value from `templates/<preset>.json` beside this SKILL.md verbatim. For `custom`, use the commands the user picks; for auto-detect, use the commands you found — building lines from the pattern blocks below in the Output Format shape. Done when every detected command sits in a line or was dropped on purpose.
+3. **Configure settings.json.** Merge the result into `companyAnnouncements` in `~/.claude/settings.json`, leaving the file’s other keys intact and preserving unrelated existing announcement text in the combined string unless replacement was requested. Done when the file still parses as JSON and `companyAnnouncements` holds exactly one string.
 
 ## Supported Harnesses
 
