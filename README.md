@@ -16,11 +16,11 @@ You installed [Superpowers](https://github.com/obra/superpowers), [Everything Cl
 
 ## The Solution
 
-This skill scans your installed commands and generates a **persistent cheatsheet** that Claude sees at the start of every session — via the `companyAnnouncements` field in `settings.json`.
+This skill scans your installed commands and generates a **persistent cheatsheet** displayed at session start — via the `companyAnnouncements` field in `settings.json`.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  What Claude sees every session:                                    │
+│  Workflow reminders displayed at startup:                                    │
 │                                                                     │
 │  [Workflows] Dev: /orchestrate feature "desc" -> /e2e               │
 │  [Workflows] Quality: /code-review -> /refactor-clean -> /verify    │
@@ -30,12 +30,12 @@ This skill scans your installed commands and generates a **persistent cheatsheet
 │  [Superpowers] Design: /brainstorming -> /writing-plans             │
 │  ...                                                                │
 │                                                                     │
-│  Claude now proactively suggests the RIGHT command for your task.   │
+│  You can see the configured workflow commands at a glance.   │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
 **Before:** You type `/plan` for everything.
-**After:** Claude suggests `/orchestrate bugfix "login crash" -> /e2e` because it knows the full workflow.
+**After:** The startup banner displays the selected workflow chains for you to consult.
 
 ---
 
@@ -45,17 +45,18 @@ This skill scans your installed commands and generates a **persistent cheatsheet
 
 ```bash
 # Copy the skill into your Claude Code skills directory
-cp -r . ~/.claude/skills/company-announcements
+mkdir -p ~/.claude/skills
+cp -R skills/claude-code-workflow-cheatsheet ~/.claude/skills/
 ```
 
 Then in Claude Code:
 
 ```
-/setup-announcements                        # Auto-detect your installed commands
-/setup-announcements --harness superpowers  # Superpowers preset
-/setup-announcements --harness ecc          # Everything Claude Code preset
-/setup-announcements --harness omcc         # Oh My Claude Code preset
-/setup-announcements --harness mattpocock   # Matt Pocock's engineering skills preset
+/claude-code-workflow-cheatsheet                        # Auto-detect your installed commands
+/claude-code-workflow-cheatsheet --harness superpowers  # Superpowers preset
+/claude-code-workflow-cheatsheet --harness ecc          # Everything Claude Code preset
+/claude-code-workflow-cheatsheet --harness omcc         # Oh My Claude Code preset
+/claude-code-workflow-cheatsheet --harness mattpocock   # Matt Pocock's engineering skills preset
 ```
 
 ### Option 2: Manual Install (30 seconds)
@@ -135,12 +136,12 @@ For the mental model, skill-authoring rules, and a full quick-reference of Matt'
 
 ## How It Works
 
-Claude Code's `companyAnnouncements` field in `settings.json` is designed for team-wide messages. This skill repurposes it as a **persistent workflow memory** — a cheatsheet that Claude reads at the start of every session.
+Claude Code's `companyAnnouncements` field in `settings.json` is designed for team-wide messages. This skill repurposes it as a **startup workflow banner**. Displaying an announcement does not prove that the model reads it as instructions or will recommend its commands. Put standing model instructions in CLAUDE.md or the supported system-prompt configuration.
 
 > **Important:** `companyAnnouncements` must be a `string[]` (array). If the array has **multiple items**, Claude Code picks **one at random per session** (rotating banner). To show all lines every session, use a **single array item** with `\n` for line breaks.
 
 ```
-settings.json                          Claude's System Prompt
+settings.json                          Startup announcement display
 ┌──────────────────────────┐          ┌──────────────────────────┐
 │ "companyAnnouncements": [ │   ────> │ Company announcements:   │
 │   "line1\nline2\nline3"   │         │ line1                    │
@@ -149,8 +150,8 @@ settings.json                          Claude's System Prompt
                                       └──────────────────────────┘
                                               │
                                               v
-                                      Claude proactively suggests
-                                      the right workflow chain
+                                      Workflow commands are visible
+                                      for the user to consult
 ```
 
 ### Syntax Convention
@@ -279,3 +280,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ## License
 
 [MIT](LICENSE)
+
+## Distribution files
+
+`skills/claude-code-workflow-cheatsheet/` is the self-contained source, including its templates. Run `node scripts/sync-distribution.mjs` after source changes; `--check` verifies the root template URLs and Cursor copy. Those are generated distributions, not separate authoring locations.
